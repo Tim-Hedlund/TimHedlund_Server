@@ -83,56 +83,55 @@ public class Server {
 
             String currentChar = String.valueOf(msgFromClient.charAt(i));
 
-            if (currentChar.equals("+")) {
+            if (currentChar.equals("+") || currentChar.equals("-") || currentChar.equals("*") || currentChar.equals("/")) {
                 mathIndexes.add(i);
-                operations.add("+");
-            } else if (currentChar.equals("-")) {
-                mathIndexes.add(i);
-                operations.add("-");
-            } else if (currentChar.equals("/")) {
-                mathIndexes.add(i);
-                operations.add("/");
-            } else if (currentChar.equals("*")) {
-                mathIndexes.add(i);
-                operations.add("*");
+                operations.add(currentChar);
             }
-
         }
 
         ArrayList<String> numbers = new ArrayList<>();
         int firstIndex = 0;
 
         for (int i = 0; i < mathIndexes.size(); i++) {
-
-            numbers.add(msgFromClient.substring(firstIndex, mathIndexes.get(i)));
-            firstIndex = mathIndexes.get(i);
-
+            numbers.add(msgFromClient.substring(firstIndex, mathIndexes.get(i)).trim());
+            firstIndex = mathIndexes.get(i) + 1;
         }
-
-        numbers.add(msgFromClient.substring(mathIndexes.size()));
+        numbers.add(msgFromClient.substring(firstIndex).trim());
 
         double result = Double.parseDouble(numbers.get(0));
 
         int currentNumber = 1;
 
         for (String operation : operations) {
+            double number = Double.parseDouble(numbers.get(currentNumber));
 
-            if (operation.equals("+")) {
-                result += Double.parseDouble(numbers.get(currentNumber));
-            } else if (operation.equals("-")) {
-                result -= Double.parseDouble(numbers.get(currentNumber));
-            } else if (operation.equals("/")) {
-                result /= Double.parseDouble(numbers.get(currentNumber));
-            } else if (operation.equals("*")) {
-                result *= Double.parseDouble(numbers.get(currentNumber));
+            switch (operation) {
+                case "+":
+                    result += number;
+                    break;
+                case "-":
+                    result -= number;
+                    break;
+                case "*":
+                    result *= number;
+                    break;
+                case "/":
+                    if (number != 0) {
+                        result /= number;
+                    } else {
+                        System.out.println("Cannot divdie by zero");
+                        return Double.NaN;
+                    }
+                    break;
+                default:
+                    System.out.println("Impossible operator: " + operation);
+                    return Double.NaN;
             }
-
+            currentNumber++;
         }
 
         return result;
-
-
-
     }
+
 
 }

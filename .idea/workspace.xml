@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb4a5a14-aa51-453c-80e6-d23dd082d6b8" name="Changes" comment="Börjat på riktigt">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="fb4a5a14-aa51-453c-80e6-d23dd082d6b8" name="Changes" comment="Nästan klar ska bara skriva om det så att det faktiskt fungerar">
       <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +54,7 @@
       <updated>1715584055109</updated>
       <workItem from="1715584056272" duration="2107000" />
       <workItem from="1715760757540" duration="1308000" />
-      <workItem from="1715762106564" duration="1967000" />
+      <workItem from="1715762106564" duration="2369000" />
     </task>
     <task id="LOCAL-00001" summary="Börjat på riktigt">
       <created>1715762763975</created>
@@ -64,7 +63,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715762763975</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Nästan klar ska bara skriva om det så att det faktiskt fungerar">
+      <created>1715764347715</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715764347715</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -72,6 +78,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Börjat på riktigt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Börjat på riktigt" />
+    <MESSAGE value="Nästan klar ska bara skriva om det så att det faktiskt fungerar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nästan klar ska bara skriva om det så att det faktiskt fungerar" />
   </component>
 </project>
