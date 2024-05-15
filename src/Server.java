@@ -1,5 +1,9 @@
+import jdk.dynalink.Operation;
+
+import javax.management.OperationsException;
 import java.net.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Server {
 
@@ -40,7 +44,7 @@ public class Server {
                 String msgFromClient = br.readLine();
 
                 System.out.println("Message recieved from client = " + msgFromClient);
-                String result = doMath(msgFromClient);
+                Double result = doMath(msgFromClient);
 
                 //send response to client
                 if (msgFromClient != null && !msgFromClient.equalsIgnoreCase("bye")) {
@@ -70,8 +74,65 @@ public class Server {
 
     }
 
-    private static String doMath(String msgFromClient) {
-        return msgFromClient;
+    private static double doMath(String msgFromClient) {
+
+        ArrayList<Integer> mathIndexes = new ArrayList<>();
+        ArrayList<String> operations = new ArrayList<>();
+
+        for (int i = 0; i < msgFromClient.length(); i++) {
+
+            String currentChar = String.valueOf(msgFromClient.charAt(i));
+
+            if (currentChar.equals("+")) {
+                mathIndexes.add(i);
+                operations.add("+");
+            } else if (currentChar.equals("-")) {
+                mathIndexes.add(i);
+                operations.add("-");
+            } else if (currentChar.equals("/")) {
+                mathIndexes.add(i);
+                operations.add("/");
+            } else if (currentChar.equals("*")) {
+                mathIndexes.add(i);
+                operations.add("*");
+            }
+
+        }
+
+        ArrayList<String> numbers = new ArrayList<>();
+        int firstIndex = 0;
+
+        for (int i = 0; i < mathIndexes.size(); i++) {
+
+            numbers.add(msgFromClient.substring(firstIndex, mathIndexes.get(i)));
+            firstIndex = mathIndexes.get(i);
+
+        }
+
+        numbers.add(msgFromClient.substring(mathIndexes.size()));
+
+        double result = Double.parseDouble(numbers.get(0));
+
+        int currentNumber = 1;
+
+        for (String operation : operations) {
+
+            if (operation.equals("+")) {
+                result += Double.parseDouble(numbers.get(currentNumber));
+            } else if (operation.equals("-")) {
+                result -= Double.parseDouble(numbers.get(currentNumber));
+            } else if (operation.equals("/")) {
+                result /= Double.parseDouble(numbers.get(currentNumber));
+            } else if (operation.equals("*")) {
+                result *= Double.parseDouble(numbers.get(currentNumber));
+            }
+
+        }
+
+        return result;
+
+
+
     }
 
 }
